@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "576053121844",
+    "project_id": "fastbite-d61b7",
+    "storage_bucket": "fastbite-d61b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576053121844:android:90c7e86701e517b0c74b61",
+        "android_client_info": {
+          "package_name": "com.example.fastbiteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576053121844-pdi92eueinrhvr661nultta5ul4fi16j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr9Acg9pbhWxChfbzWrD-MZRXbW3nRbYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576053121844-pdi92eueinrhvr661nultta5ul4fi16j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "576053121844-hf7kuhuuq74culq66u11gbap7dsgk1hq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fastbiteapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
