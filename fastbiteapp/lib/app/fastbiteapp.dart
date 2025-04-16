@@ -1,11 +1,12 @@
 // ignore_for_file: file_names
 
-import 'package:fastbiteapp/screens/home/category_detail_screen.dart';
-import 'package:fastbiteapp/screens/home/dish_detail_screen.dart';
-import 'package:fastbiteapp/screens/home_screen.dart';
-import 'package:fastbiteapp/screens/login_screen.dart';
-import 'package:fastbiteapp/screens/signup_screen.dart';
-import 'package:fastbiteapp/screens/splash_screen.dart';
+import 'package:fastbiteapp/detailpage/category_detail_screen.dart';
+import 'package:fastbiteapp/screens/dish_detail/dish_detail_screen.dart';
+import 'package:fastbiteapp/screens/home/home_screen.dart';
+import 'package:fastbiteapp/screens/auth/login_screen.dart';
+import 'package:fastbiteapp/screens/auth/signup_screen.dart';
+import 'package:fastbiteapp/screens/auth/splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +27,7 @@ class FastBiteApp extends StatelessWidget {
   }
 }
 
-final _router = GoRouter(
+final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
@@ -45,15 +46,13 @@ final _router = GoRouter(
       path: '/home',
       builder: (context, state) => const HomeScreen(),
       routes: [
-        // Category detail page route with dynamic categoryId
         GoRoute(
-          path: 'category/:categoryId',
+          path: 'category/:category',
           builder: (context, state) {
-            final categoryId = state.pathParameters['categoryId']!;
-            return CategoryDetailScreen(categoryId: categoryId);
+            final category = state.pathParameters['category']!;
+            return CategoryDetailScreen(category: category, categoryId: 'categoryId',);
           },
           routes: [
-            // Dish detail page route with dynamic dishId
             GoRoute(
               path: 'dish/:dishId',
               builder: (context, state) {
@@ -66,4 +65,19 @@ final _router = GoRouter(
       ],
     ),
   ],
+redirect: (context, state) {
+  final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+  final location = state.uri.toString();
+
+  if (!isLoggedIn && location.startsWith('/home')) {
+    return '/login';
+  }
+
+  if (isLoggedIn && (location == '/login' || location == '/signup')) {
+    return '/home';
+  }
+
+  return null;
+},
 );
+
