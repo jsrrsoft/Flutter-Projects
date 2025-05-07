@@ -1,24 +1,22 @@
-import 'package:fastbiteapp/model/dish_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fastbiteapp/model/dish_model.dart';
+import 'package:fastbiteapp/data/dummy_dishes.dart'; // Assuming you have a dummy list of dishes
 import 'package:go_router/go_router.dart';
-import 'package:fastbiteapp/data/dummy_dishes.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   final String category;
 
-  const CategoryDetailScreen({super.key, required this.category, required String categoryId});
+  const CategoryDetailScreen({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
-    // Filter dishes that belong to this category
+    // Filter dishes based on the selected category
     final List<DishModel> filteredDishes = dummyDishes
-        .where((dish) => dish.categoryId.contains(category))
+        .where((dish) => dish.categoryId == category) // Assuming categoryId matches category name
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('$category Dishes'),
-      ),
+      appBar: AppBar(title: Text('$category Dishes')),
       body: filteredDishes.isEmpty
           ? const Center(child: Text('No dishes found in this category.'))
           : Padding(

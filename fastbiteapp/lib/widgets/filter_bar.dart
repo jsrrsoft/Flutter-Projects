@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
 class FilterBar extends StatelessWidget {
-  const FilterBar({super.key});
+  final Function(String) onFilterSelected;
+
+  const FilterBar({required this.onFilterSelected, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          FilterChip(label: Text('Veg'), onSelected: (bool value) {}),
-          FilterChip(label: Text('Non-Veg'), onSelected: (bool value) {}),
-          FilterChip(label: Text('Vegan'), onSelected: (bool value) {}),
-          FilterChip(label: Text('Price'), onSelected: (bool value) {}),
-        ],
-      ),
+    final filters = ['Veg', 'Non-Veg', 'Vegan', 'Price'];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: filters.map((filter) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: ElevatedButton(
+            onPressed: () => onFilterSelected(filter),
+            child: Text(filter),
+          ),
+        );
+      }).toList(),
     );
   }
 }

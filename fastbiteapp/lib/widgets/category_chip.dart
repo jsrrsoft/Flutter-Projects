@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 
 class CategoryChip extends StatelessWidget {
   final List<String> categories;
+  final Function(String) onCategorySelected;
 
-  const CategoryChip({super.key, required this.categories});
+  const CategoryChip({
+    required this.categories,
+    required this.onCategorySelected,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 8.0,
-      children: categories
-          .map((category) => GestureDetector(
-                onTap: () {
-                  // Navigate to category details
-                  Navigator.pushNamed(context, '/home/category/$category');
-                },
-                child: Chip(
-                  label: Text(category),
-                ),
-              ))
-          .toList(),
+      children: categories.map((name) {
+        return ActionChip(
+          label: Text(name),
+          onPressed: () => onCategorySelected(name),
+        );
+      }).toList(),
     );
   }
 }

@@ -49,14 +49,14 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'category/:category',
           builder: (context, state) {
-            final category = state.pathParameters['category']!;
-            return CategoryDetailScreen(category: category, categoryId: 'categoryId',);
+            final categoryName = state.pathParameters['category']!; // Fix this part
+            return CategoryDetailScreen(category: categoryName);
           },
           routes: [
             GoRoute(
-              path: 'dish/:dishId',
+              path: 'dish/:id', // Fixed this path for nested route
               builder: (context, state) {
-                final dishId = state.pathParameters['dishId']!;
+                final dishId = state.pathParameters['id']!;
                 return DishDetailScreen(dishId: dishId);
               },
             ),
@@ -65,19 +65,18 @@ final GoRouter _router = GoRouter(
       ],
     ),
   ],
-redirect: (context, state) {
-  final isLoggedIn = FirebaseAuth.instance.currentUser != null;
-  final location = state.uri.toString();
+  redirect: (context, state) {
+    final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+    final location = state.uri.toString();
 
-  if (!isLoggedIn && location.startsWith('/home')) {
-    return '/login';
-  }
+    if (!isLoggedIn && location.startsWith('/home')) {
+      return '/login';
+    }
 
-  if (isLoggedIn && (location == '/login' || location == '/signup')) {
-    return '/home';
-  }
+    if (isLoggedIn && (location == '/login' || location == '/signup')) {
+      return '/home';
+    }
 
-  return null;
-},
+    return null;
+  },
 );
-
