@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "590773816726",
+    "project_id": "event-checkin-app-d2aa5",
+    "storage_bucket": "event-checkin-app-d2aa5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590773816726:android:19c101b6ba90a64438a1b7",
+        "android_client_info": {
+          "package_name": "com.example.event_checkin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOrbzauZJpPp0KU-sorovQDybZAWoWBCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

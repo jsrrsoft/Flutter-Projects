@@ -10,8 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String searchQuery = '';
-  String selectedFilter = 'All'; // Default filter
 
   // Logout function
   void _logout(BuildContext context) async {
@@ -38,13 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // SearchBar
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SearchBar(
-              onSearch: (query) {
-                setState(() {
-                  searchQuery = query;
-                });
-              },
-            ),
+            child: const SearchBar(),
           ),
           // FilterBar
           Padding(
